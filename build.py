@@ -27,6 +27,7 @@ HEAD = """<!doctype html>
     a {{ color: #8ab4f8; }}
   }}
 </style>
+<script defer src="https://stats.bringfour.com/b4.js" data-website-id="8675ff73-4918-4e22-b3a8-3c2635d23539"></script>
 """
 
 
