@@ -1,0 +1,41 @@
+# The whole content of colefoster.ca. Edit, push to main, and the Pages workflow rebuilds the page.
+# A project needs a name and a blurb; site and repo are optional. hidden: true leaves it off the page.
+title: Cole Foster
+description: Projects by Cole Foster.
+intro: I build tools for coding agents, Pokémon battle bots, and the odd toy.
+github: https://github.com/colefoster
+
+sections:
+  - title: Tools
+    projects:
+      - name: Keyrelay
+        blurb: hands an API key to the command your coding agent runs, without the key going through chat.
+        site: https://keyrelay.colefoster.ca
+        repo: https://github.com/colefoster/keyrelay
+      - name: tattle
+        blurb: a local proxy that shows what your coding agent sends to the internet and flags secrets in it.
+        site: https://tattle.colefoster.ca
+        repo: https://github.com/colefoster/tattle
+      - name: logo-kit
+        blurb: makes a logo and a full favicon set from a name, a colour and an icon.
+        site: https://logo-kit.fostered.dev
+        repo: https://github.com/colefoster/logo-kit
+
+  - title: Pokémon VGC
+    projects:
+      - name: Bring Four
+        blurb: enter both teams at team preview and it guesses the opponent's four and lead.
+        site: https://bringfour.com
+      - name: vgc-engine
+        blurb: Pokémon battle rules rebuilt in Rust, checked against Showdown.
+        site: https://vgc-engine.colefoster.ca
+        repo: https://github.com/colefoster/vgc-engine
+
+  - title: Games and toys
+    projects:
+      - name: Handhelds
+        blurb: Game Boys built in Three.js; two run real emulators on the screen.
+        site: https://gameboy.colefoster.ca
+      - name: vim-sim
+        blurb: practise Vim motions and operators in the browser.
+        site: https://vim.colefoster.ca
