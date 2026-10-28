@@ -16,10 +16,6 @@ sections:
         blurb: a local proxy that shows what your coding agent sends to the internet and flags secrets in it.
         site: https://tattle.colefoster.ca
         repo: https://github.com/colefoster/tattle
-      - name: logo-kit
-        blurb: makes a logo and a full favicon set from a name, a colour and an icon.
-        site: https://logo-kit.fostered.dev
-        repo: https://github.com/colefoster/logo-kit
 
   - title: Pokémon VGC
     projects:
