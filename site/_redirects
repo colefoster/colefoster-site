@@ -1,5 +1,3 @@
-/blog            https://blog.colefoster.ca/ 301
-/blog/*          https://blog.colefoster.ca/:splat 301
-/rss.xml         https://blog.colefoster.ca/rss.xml 301
+/blog*           / 301
 /projects*       / 301
 /about*          / 301

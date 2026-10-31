@@ -4,6 +4,8 @@ title: Cole Foster
 description: Projects by Cole Foster.
 intro: I build tools for coding agents, Pokémon battle bots, and the odd toy.
 github: https://github.com/colefoster
+url: https://colefoster.ca/
+image: og.png  # 1200x630 share card in site/, regenerate with: python3 make_og.py
 
 sections:
   - title: Tools
@@ -35,3 +37,4 @@ sections:
       - name: vim-sim
         blurb: practise Vim motions and operators in the browser.
         site: https://vim.colefoster.ca
+        hidden: true  # demo retired 2026-10-29 (410); repo is private

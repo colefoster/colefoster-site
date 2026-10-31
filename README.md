@@ -5,3 +5,5 @@ One page listing my projects. The content lives in `projects.yaml`; `build.py` t
 - **Edit:** change `projects.yaml` and push to main. The Pages workflow builds the page and deploys it to Cloudflare Pages.
 - **Preview locally:** `python3 build.py`, then open `site/index.html`. Needs PyYAML.
 - **Park a project:** set `hidden: true` on it.
+- **Share card:** `site/og.png` (1200x630) is drawn from `projects.yaml` by `python3 make_og.py` (Mac fonts, Pillow). Rerun it when projects change; CI does not.
+- **Check:** `python3 build.py && python3 check.py --links` verifies the share tags, the image size, and that every link returns 200.
