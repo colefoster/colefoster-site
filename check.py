@@ -18,6 +18,7 @@ def main():
     meta = dict(re.findall(r'<meta (?:property|name)="([^"]+)" content="([^"]*)"', html))
     missing = [k for k in REQUIRED if not meta.get(k)]
     assert not missing, f"missing tags: {missing}"
+    assert f'<link rel="canonical" href="{meta["og:url"]}">' in html, "canonical missing or differs from og:url"
     assert meta["twitter:card"] == "summary_large_image"
     png = (ROOT / "site" / meta["og:image"].rsplit("/", 1)[1]).read_bytes()
     size = struct.unpack(">II", png[16:24])
