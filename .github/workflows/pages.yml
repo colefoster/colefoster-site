@@ -3,7 +3,7 @@ name: pages
 on:
   push:
     branches: [main]
-    paths: ["projects.yaml", "build.py", "site/**", ".github/workflows/pages.yml"]
+    paths: ["projects.yaml", "build.py", "check.py", "site/**", ".github/workflows/pages.yml"]
   workflow_dispatch:
 
 jobs:
