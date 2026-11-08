@@ -2,6 +2,7 @@
 
 Run: python3 build.py && python3 check.py --links
 """
+import json
 import re
 import struct
 import sys
@@ -19,6 +20,12 @@ def main():
     missing = [k for k in REQUIRED if not meta.get(k)]
     assert not missing, f"missing tags: {missing}"
     assert f'<link rel="canonical" href="{meta["og:url"]}">' in html, "canonical missing or differs from og:url"
+    blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
+    assert len(blocks) == 1, f"expected 1 JSON-LD block, found {len(blocks)}"
+    graph = json.loads(blocks[0])["@graph"]
+    assert {n["@type"] for n in graph} == {"Person", "WebSite"}, "JSON-LD needs Person and WebSite"
+    assert all(n["url"] == meta["og:url"] for n in graph), "JSON-LD url differs from canonical"
+    assert 'rel="icon"' in html, "icon link missing"
     assert meta["twitter:card"] == "summary_large_image"
     png = (ROOT / "site" / meta["og:image"].rsplit("/", 1)[1]).read_bytes()
     size = struct.unpack(">II", png[16:24])

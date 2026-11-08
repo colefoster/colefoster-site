@@ -1,4 +1,5 @@
 """Build site/index.html from projects.yaml. Run: python3 build.py"""
+import json
 from html import escape as _escape
 from pathlib import Path
 
@@ -15,6 +16,7 @@ HEAD = """<!doctype html>
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
 <title>{title}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{url}">
@@ -46,6 +48,14 @@ HEAD = """<!doctype html>
 """
 
 
+def jsonld(data):
+    graph = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Person", "name": data["title"], "url": data["url"], "sameAs": [data["github"]]},
+        {"@type": "WebSite", "name": data["title"], "url": data["url"]}]}
+    body = json.dumps(graph, ensure_ascii=False, indent=2).replace("<", "\\u003c")
+    return f'<script type="application/ld+json">\n{body}\n</script>'
+
+
 def project(p):
     links = [f'<a href="{escape(p[k])}">{k}</a>' for k in ("site", "repo") if p.get(k)]
     return (f"  <li><b>{escape(p['name'])}</b> — {escape(p['blurb'])}\n"
@@ -65,7 +75,7 @@ def build(data):
     out = [HEAD.format(title=escape(data["title"]), description=escape(data["description"]),
                        intro=escape(data["intro"]), url=escape(data["url"]),
                        image=escape(data["url"] + data["image"]), image_alt=escape(image_alt)),
-           "<main>", f"<h1>{escape(data['title'])}</h1>",
+           jsonld(data), "<main>", f"<h1>{escape(data['title'])}</h1>",
            f"<p>{escape(data['intro'])} <a href=\"{escape(data['github'])}\">GitHub</a></p>"]
     for title, shown in visible_sections(data):
         out += ["", f"<h2>{escape(title)}</h2>", "<ul>", *map(project, shown), "</ul>"]
