@@ -65,10 +65,11 @@ def build(data):
     out = [HEAD.format(title=escape(data["title"]), description=escape(data["description"]),
                        intro=escape(data["intro"]), url=escape(data["url"]),
                        image=escape(data["url"] + data["image"]), image_alt=escape(image_alt)),
-           f"<h1>{escape(data['title'])}</h1>",
+           "<main>", f"<h1>{escape(data['title'])}</h1>",
            f"<p>{escape(data['intro'])} <a href=\"{escape(data['github'])}\">GitHub</a></p>"]
     for title, shown in visible_sections(data):
         out += ["", f"<h2>{escape(title)}</h2>", "<ul>", *map(project, shown), "</ul>"]
+    out.append("</main>")
     return "\n".join(out) + "\n"
 
 
